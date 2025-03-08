@@ -1,6 +1,6 @@
-import express from 'express';
-import router from 'routes';
-import sequelize from 'database';
+import express from "express";
+import router from "routes";
+import sequelize from "database";
 
 const createApp = async () => {
   const app = express();
@@ -9,9 +9,9 @@ const createApp = async () => {
 
   try {
     await sequelize.authenticate();
-    console.log('Database successfully connected.');
+    console.log("Database successfully connected.");
   } catch (error) {
-    console.error('Unable to connect to the database:', error);
+    console.error("Unable to connect to the database:", error);
   }
 
   return app;
