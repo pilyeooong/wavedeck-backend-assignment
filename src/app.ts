@@ -1,7 +1,10 @@
 import express from 'express';
+import router from 'routes';
 
 const createApp = async () => {
   const app = express();
+
+  app.use(router);
 
   return app;
 };
