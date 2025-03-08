@@ -6,17 +6,14 @@ import prettier from 'eslint-config-prettier';
 
 export default tseslint.config(
   {
-    ignores: ['dist/*'],
+    ignores: ['dist/*', '**/*.js'],
   },
   eslint.configs.recommended,
   tseslint.configs.recommended,
   {
     rules: {
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        { argsIgnorePattern: '^_' },
-      ],
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
   },
-  prettier
+  prettier,
 );
