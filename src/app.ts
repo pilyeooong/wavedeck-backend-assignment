@@ -1,18 +1,15 @@
-import express from "express";
-import router from "routes";
-import sequelize from "database";
+import express from 'express';
+import sequelize from 'database';
+import router from 'routes';
+import errorHandler from 'errors/errorHandler';
 
 const createApp = async () => {
   const app = express();
 
-  app.use(router);
+  await sequelize.authenticate();
 
-  try {
-    await sequelize.authenticate();
-    console.log("Database successfully connected.");
-  } catch (error) {
-    console.error("Unable to connect to the database:", error);
-  }
+  app.use(router);
+  app.use(errorHandler);
 
   return app;
 };
