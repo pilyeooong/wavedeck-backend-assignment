@@ -8,7 +8,12 @@ const password = process.env.DATABASE_PASSWORD || '1234';
 const database = process.env.DATABASE_NAME || 'wavedeck-development';
 const dialect = 'mysql';
 
-const force = process.env.NODE_ENV !== 'production' ? true : false;
+const isProduction = process.env.NODE_ENV === 'production';
+
+const force = isProduction ? false : true;
+const modelsPath = isProduction
+  ? path.resolve('dist', 'models', '**/*.js')
+  : path.resolve('src', 'models', '**/*.ts');
 
 const sequelize = new Sequelize(database, username, password, {
   host,
@@ -17,7 +22,7 @@ const sequelize = new Sequelize(database, username, password, {
   sync: {
     force,
   },
-  models: [path.resolve('src', 'models', '**/*.ts')],
+  models: [modelsPath],
 });
 
 export default sequelize;
