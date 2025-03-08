@@ -1,4 +1,5 @@
-import { Sequelize } from 'sequelize';
+import path from 'path';
+import { Sequelize } from 'sequelize-typescript';
 
 const host = process.env.DATABASE_HOST || 'localhost';
 const port = parseInt(process.env.DATABASE_PORT || '3306', 10);
@@ -7,10 +8,16 @@ const password = process.env.DATABASE_PASSWORD || '1234';
 const database = process.env.DATABASE_NAME || 'wavedeck-development';
 const dialect = 'mysql';
 
+const force = process.env.NODE_ENV !== 'production' ? true : false;
+
 const sequelize = new Sequelize(database, username, password, {
   host,
   dialect,
   port,
+  sync: {
+    force,
+  },
+  models: [path.resolve('src', 'models', '**/*.ts')],
 });
 
 export default sequelize;
