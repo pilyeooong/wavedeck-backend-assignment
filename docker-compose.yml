@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: wavedeck-app
+    volumes:
+      - ./src:/usr/wavedeck-backend-assignment/src
+      - /usr/wavedeck-backend-assignment/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - DATABASE_HOST=mysql
+      - DATABASE_PORT=3306
+      - DATABASE_USER=test
+      - DATABASE_PASSWORD=1234
+      - DATABASE_NAME=wavedeck-development
+    depends_on:
+      - mysql
+    restart: always
+
+  mysql:
+    image: mysql:8.4
+    container_name: wavedeck-db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: test
+      MYSQL_PASSWORD: 1234
+      MYSQL_DATABASE: wavedeck-development
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:

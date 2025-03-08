@@ -5,16 +5,22 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc -p . && tsc-alias",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "start": "node dist/run.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "mysql2": "^3.13.0",
+    "reflect-metadata": "^0.2.2",
+    "sequelize": "^6.37.6",
+    "sequelize-typescript": "^2.1.6"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
     "@types/node": "^22.13.9",
+    "@types/validator": "^13.12.2",
     "eslint": "^9.21.0",
     "eslint-config-prettier": "^10.0.2",
     "nodemon": "^3.1.9",
