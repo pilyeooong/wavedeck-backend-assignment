@@ -17,12 +17,16 @@ interface FileAttributes {
   deletedAt?: Date;
 }
 
+interface FileCreationAttributes {
+  fileType: string;
+}
+
 @Table({
   tableName: 'files',
   timestamps: true,
   paranoid: true,
 })
-class File extends Model<FileAttributes> {
+class File extends Model<FileAttributes, FileCreationAttributes> {
   @Column({ type: DataType.BIGINT, allowNull: false, autoIncrement: true, primaryKey: true })
   id: number;
 
@@ -58,6 +62,10 @@ class File extends Model<FileAttributes> {
   @Index
   @Column
   deletedAt: Date;
+
+  static async createFile(fileData: FileCreationAttributes) {
+    await this.create({ ...fileData });
+  }
 }
 
 export default File;
