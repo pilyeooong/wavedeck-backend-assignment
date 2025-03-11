@@ -18,8 +18,19 @@ interface FileAttributes {
 }
 
 interface FileCreationAttributes {
+  status: string;
+  previewUrl: string;
+  fileName: string;
   fileType: string;
+  fileSize: number;
+  fileUrl: string;
+  duration?: number;
+  userId?: number;
+  originalFileId?: number;
 }
+
+export const FILE_STATUS_ORIGINAL = 'ORIGINAL';
+export const FILE_STATUS_CONVERTED = 'CONVERTED';
 
 @Table({
   tableName: 'files',
@@ -64,7 +75,7 @@ class File extends Model<FileAttributes, FileCreationAttributes> {
   deletedAt: Date;
 
   static async createFile(fileData: FileCreationAttributes) {
-    await this.create({ ...fileData });
+    return await this.create(fileData);
   }
 }
 
