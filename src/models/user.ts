@@ -28,6 +28,10 @@ class User extends Model<UserAttributes> {
   @Index
   @Column({ type: DataType.DATE, allowNull: true })
   deletedAt: Date;
+
+  static async findById(id: number) {
+    return await this.findOne({ where: { id } });
+  }
 }
 
 export default User;

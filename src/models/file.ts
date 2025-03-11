@@ -1,5 +1,7 @@
 import { Table, Column, Model, DataType, ForeignKey, Index } from 'sequelize-typescript';
 import User from 'models/user';
+import path from 'path';
+import fs from 'fs';
 
 interface FileAttributes {
   id: number;
@@ -76,6 +78,17 @@ class File extends Model<FileAttributes, FileCreationAttributes> {
 
   static async createFile(fileData: FileCreationAttributes) {
     return await this.create(fileData);
+  }
+
+  static async findById(id: number) {
+    return await this.findOne({ where: { id } });
+  }
+
+  destroyLocalFile() {
+    const filePath = path.join(process.cwd(), this.fileUrl);
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+    }
   }
 }
 
