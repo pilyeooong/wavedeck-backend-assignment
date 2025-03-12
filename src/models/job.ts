@@ -1,4 +1,6 @@
-import { Table, Column, Model, DataType, Index } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, Index, ForeignKey } from 'sequelize-typescript';
+import File from 'models/file';
+import Voice from 'models/voice';
 
 interface JobAttributes {
   id: number;
@@ -26,6 +28,14 @@ class Job extends Model<JobAttributes> {
 
   @Column({ type: DataType.FLOAT, allowNull: false })
   soundQuality: number;
+
+  @ForeignKey(() => File)
+  @Column({ type: DataType.BIGINT, allowNull: true })
+  fileId: number;
+
+  @ForeignKey(() => Voice)
+  @Column({ type: DataType.BIGINT, allowNull: true })
+  voiceId: number;
 
   @Index
   @Column

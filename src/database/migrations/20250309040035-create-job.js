@@ -15,6 +15,29 @@ module.exports = {
       soundQuality: {
         type: Sequelize.FLOAT,
       },
+      status: {
+        type: Sequelize.STRING,
+      },
+      voiceId: {
+        type: Sequelize.BIGINT,
+        allowNull: false,
+        references: {
+          model: 'voices',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+      },
+      fileId: {
+        type: Sequelize.BIGINT,
+        allowNull: false,
+        references: {
+          model: 'files',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
