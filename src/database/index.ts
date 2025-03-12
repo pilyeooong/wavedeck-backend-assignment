@@ -10,20 +10,14 @@ const dialect = 'mysql';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const force = isProduction ? false : true;
-const alter = isProduction ? false : true;
 const modelsPath = isProduction
-  ? path.resolve('dist', 'models', '**/*.js')
-  : path.resolve('src', 'models', '**/*.ts');
+  ? path.resolve('dist', 'models', '*.js')
+  : path.resolve('src', 'models', '*.ts');
 
 const sequelize = new Sequelize(database, username, password, {
   host,
   dialect,
   port,
-  sync: {
-    force,
-    alter,
-  },
   models: [modelsPath],
 });
 

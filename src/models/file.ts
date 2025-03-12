@@ -62,15 +62,15 @@ class File extends Model<FileAttributes, FileCreationAttributes> {
   fileUrl: string;
 
   @Column({ type: DataType.FLOAT, allowNull: true })
-  duration: number;
+  duration?: number;
 
   @ForeignKey(() => User)
-  @Column
-  userId: number;
+  @Column({ type: DataType.BIGINT, allowNull: true })
+  userId?: number;
 
   @ForeignKey(() => File)
-  @Column
-  originalFileId: number;
+  @Column({ type: DataType.BIGINT, allowNull: true })
+  originalFileId?: number;
 
   @Index
   @Column
