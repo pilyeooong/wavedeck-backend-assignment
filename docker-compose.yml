@@ -20,8 +20,11 @@ services:
       - DATABASE_USER=test
       - DATABASE_PASSWORD=1234
       - DATABASE_NAME=wavedeck-development
+      - REDIS_HOST=localhost
+      - REDIS_PORT=6379
     depends_on:
       - mysql
+      - redis
     restart: always
 
   mysql:
@@ -47,6 +50,13 @@ services:
       MYSQL_USER: test
       MYSQL_PASSWORD: 1234
       MYSQL_DATABASE: wavedeck-test
+
+  redis:
+    image: redis:7.2
+    container_name: wavedeck-redis
+    ports:
+      - '6379:6379'
+    command: redis-server --appendonly yes
 
 volumes:
   mysql_data:
