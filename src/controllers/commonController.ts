@@ -8,6 +8,8 @@ import {
   FILE_SIZE_OVER_LIMIT_MESSAGE,
   INVALID_AUDIO_FILE_MESSAGE,
   USER_NOT_EXISTS_MESSAGE,
+  FORBIDDEN_MESSAGE,
+  ForBiddenError,
 } from 'errors';
 import File, { FILE_STATUS_ORIGINAL } from 'models/file';
 import { extractFileMetadata, isAudioFile, isFileSizeOverLimit } from 'utils/fileUtil';
@@ -56,6 +58,7 @@ export const createAudioFile = async (req: Request, res: Response, next: NextFun
 export const destroyAudioFile = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { fileId } = req.params;
+    const { userId } = req.body;
     if (!fileId) {
       throw new BadRequestError(BAD_REQUEST_ERROR_MESSAGE);
     }
@@ -63,6 +66,10 @@ export const destroyAudioFile = async (req: Request, res: Response, next: NextFu
     const file = await File.findById(+fileId);
     if (!file) {
       throw new NotFoundError(FILE_NOT_EXISTS_MESSAGE);
+    }
+
+    if (file.userId !== +userId) {
+      throw new ForBiddenError(FORBIDDEN_MESSAGE);
     }
 
     const t = await sequelize.transaction();

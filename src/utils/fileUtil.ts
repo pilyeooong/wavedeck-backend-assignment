@@ -1,12 +1,12 @@
-import musicMetadata from 'music-metadata';
+import { parseFile } from 'music-metadata';
 
 export const extractFileMetadata = async (file: Express.Multer.File) => {
-  const { mimetype, filename, path, size } = file;
+  const { mimetype, filename, path: filePath, size } = file;
 
   const metadataObj = {
     fileType: mimetype,
     fileName: filename,
-    fileUrl: path,
+    fileUrl: filePath,
     fileSize: size,
   };
 
@@ -14,8 +14,7 @@ export const extractFileMetadata = async (file: Express.Multer.File) => {
     return metadataObj;
   }
 
-  const mm = await musicMetadata.loadMusicMetadata();
-  const audioMetadata = await mm.parseFile(path);
+  const audioMetadata = await parseFile(filePath);
 
   return {
     ...metadataObj,

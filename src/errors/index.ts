@@ -1,3 +1,4 @@
+export const FORBIDDEN_MESSAGE = '해당 동작에 권한이 없습니다.';
 export const USER_NOT_EXISTS_MESSAGE = '유저가 존재하지 않습니다.';
 export const BAD_REQUEST_ERROR_MESSAGE = '유효하지 않은 요청입니다.';
 export const FILE_NOT_EXISTS_MESSAGE = '파일이 존재하지 않습니다.';
@@ -20,5 +21,14 @@ export class NotFoundError extends Error {
   constructor(message: string) {
     super(message);
     this.statusCode = 404;
+  }
+}
+
+export class ForBiddenError extends Error {
+  statusCode: number;
+
+  constructor(message: string) {
+    super(message);
+    this.statusCode = 403;
   }
 }
