@@ -20,10 +20,11 @@ services:
       - DATABASE_USER=test
       - DATABASE_PASSWORD=1234
       - DATABASE_NAME=wavedeck-development
-      - REDIS_HOST=localhost
+      - REDIS_HOST=redis
       - REDIS_PORT=6379
     depends_on:
       - mysql
+      - mysql-test
       - redis
     restart: always
 

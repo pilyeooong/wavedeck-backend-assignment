@@ -9,6 +9,7 @@
     "lint": "eslint . --config eslint.config.mjs",
     "test": "jest --runInBand --verbose",
     "dev": "nodemon",
+    "pm2:dev": "pm2-runtime start ecosystem.dev.config.js",
     "start": "node dist/run.js",
     "migrate": "sequelize-cli db:migrate",
     "migrate:undo": "sequelize-cli db:migrate:undo",
