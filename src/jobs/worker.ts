@@ -1,6 +1,10 @@
 import { Worker } from 'bullmq';
-import { redisConnection } from 'jobs/queue';
+import { INFERENCE_QUEUE, redisConnection } from 'jobs/queue';
+import requestAiInferenceJob from 'jobs/requestAiInferenceJob';
 
-new Worker('sample', async () => {}, { connection: redisConnection });
+new Worker(INFERENCE_QUEUE, async (job) => requestAiInferenceJob(job), {
+  connection: redisConnection,
+  concurrency: 5,
+});
 
 console.log('Worker running properly');

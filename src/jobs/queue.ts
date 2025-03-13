@@ -10,4 +10,6 @@ export const redisConnection = new Redis({
   maxRetriesPerRequest: null,
 });
 
-export const queue = new Queue('sample', { connection: redisConnection });
+export const INFERENCE_QUEUE = 'INFERENCE_QUEUE';
+
+export const queue = new Queue(INFERENCE_QUEUE, { connection: redisConnection });
