@@ -2,7 +2,7 @@ import { Table, Column, Model, DataType, Index, ForeignKey } from 'sequelize-typ
 import File from 'models/file';
 import Voice from 'models/voice';
 
-interface JobAttributes {
+interface JobHistoriesAttributes {
   id: number;
   pitch: number;
   soundQuality: number;
@@ -12,11 +12,11 @@ interface JobAttributes {
 }
 
 @Table({
-  tableName: 'jobs',
+  tableName: 'jobHistories',
   timestamps: true,
   paranoid: true,
 })
-class Job extends Model<JobAttributes> {
+class JobHistory extends Model<JobHistoriesAttributes> {
   @Column({ type: DataType.BIGINT, allowNull: false, autoIncrement: true, primaryKey: true })
   id: number;
 
@@ -42,4 +42,4 @@ class Job extends Model<JobAttributes> {
   deletedAt: Date;
 }
 
-export default Job;
+export default JobHistory;

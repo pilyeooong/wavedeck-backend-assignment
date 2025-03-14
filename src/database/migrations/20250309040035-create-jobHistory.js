@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('jobs', {
+    await queryInterface.createTable('jobHistories', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -26,7 +26,6 @@ module.exports = {
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
       },
       fileId: {
         type: Sequelize.BIGINT,
@@ -36,7 +35,6 @@ module.exports = {
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
       },
       createdAt: {
         allowNull: false,
@@ -51,11 +49,11 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
-    await queryInterface.addIndex('jobs', ['deletedAt'], {
-      name: 'jobs_deletedAt_index',
+    await queryInterface.addIndex('jobHistories', ['deletedAt'], {
+      name: 'jobHistories_deletedAt_index',
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('jobs');
+    await queryInterface.dropTable('jobHistories');
   },
 };
