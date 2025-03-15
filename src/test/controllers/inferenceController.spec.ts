@@ -12,7 +12,6 @@ describe('inferenceController', () => {
   let app: Application;
 
   beforeAll(async () => {
-    jest.setTimeout(20000);
     await sequelize.sync({ force: true, logging: false });
     app = await createApp();
   });

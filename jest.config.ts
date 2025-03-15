@@ -6,6 +6,7 @@ const jestConfig: JestConfigWithTsJest = {
   testRegex: '.spec.ts$',
   modulePaths: [compilerOptions.baseUrl],
   testEnvironment: 'node',
+  testTimeout: 10000,
   setupFiles: ['<rootDir>/src/test/setEnvVars.ts'],
 };
 
