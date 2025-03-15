@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { queue, redisConnection } from 'jobs/queue';
+import queue, { redisConnection } from 'jobs/queue';
 import { QueueEvents } from 'bullmq';
 import { ResponseObject } from 'common/response';
 import File, { FILE_STATUS_CONVERTED } from 'models/file';

@@ -12,4 +12,6 @@ export const redisConnection = new Redis({
 
 export const INFERENCE_QUEUE = 'INFERENCE_QUEUE';
 
-export const queue = new Queue(INFERENCE_QUEUE, { connection: redisConnection });
+const queue = new Queue(INFERENCE_QUEUE, { connection: redisConnection });
+
+export default queue;
