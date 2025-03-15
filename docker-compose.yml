@@ -38,8 +38,6 @@ services:
       MYSQL_USER: test
       MYSQL_PASSWORD: 1234
       MYSQL_DATABASE: wavedeck-development
-    volumes:
-      - mysql_data:/var/lib/mysql
 
   mysql-test:
     image: mysql:8.4
@@ -58,6 +56,3 @@ services:
     ports:
       - '6379:6379'
     command: redis-server --appendonly yes
-
-volumes:
-  mysql_data:

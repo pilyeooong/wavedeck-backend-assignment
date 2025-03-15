@@ -12,7 +12,6 @@ const createApp = async () => {
 
   await sequelize.authenticate();
   if (process.env.NODE_ENV === 'development') {
-    await sequelize.sync({ force: true, alter: true });
     await runSeeders();
   }
 

@@ -1,0 +1,341 @@
+{
+  "info": {
+    "_postman_id": "3d5abb0f-978e-437f-ad9d-7402e049b597",
+    "name": "Wavedeck",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "9794706"
+  },
+  "item": [
+    {
+      "name": "파일 업로드",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": "/Users/heopil-yeong/Downloads/sample_converted.wav"
+            },
+            {
+              "key": "userId",
+              "value": "1",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/common/upload/audio",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "common", "upload", "audio"]
+        }
+      },
+      "response": [
+        {
+          "name": "업로드 완료",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/Users/heopil-yeong/Downloads/sample_converted.wav"
+                },
+                {
+                  "key": "userId",
+                  "value": "1",
+                  "type": "text"
+                }
+              ],
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/common/upload/audio",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "v1", "common", "upload", "audio"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "343"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"157-2g3ssbPaX6XLxmJDWykwqliJT6M\""
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Mar 2025 12:41:45 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"userId\": 1,\n        \"fileType\": \"audio/wave\",\n        \"fileName\": \"1742042505123-sample_converted.wav\",\n        \"fileUrl\": \"uploads/1742042505123-sample_converted.wav\",\n        \"fileSize\": 882044,\n        \"duration\": 10,\n        \"status\": \"ORIGINAL\",\n        \"previewUrl\": \"preview/1742042505123-sample_converted.wav\",\n        \"updatedAt\": \"2025-03-15T12:41:45.200Z\",\n        \"createdAt\": \"2025-03-15T12:41:45.200Z\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "STS 변환 요청",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"userId\": 1,\n    \"fileId\": 1,\n    \"voiceId\": 1,\n    \"pitch\": 10\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/inference/sts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "inference", "sts"]
+        }
+      },
+      "response": [
+        {
+          "name": "STS 변환 완료",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"userId\": 1,\n    \"fileId\": 1,\n    \"voiceId\": 1,\n    \"pitch\": 10\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/inference/sts",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "v1", "inference", "sts"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "307"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"133-mZ8v9P1L/21DmMqgR+JsnTJC8Ig\""
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Mar 2025 12:41:49 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"data\": {\n        \"id\": 2,\n        \"userId\": 1,\n        \"status\": \"CONVERTED\",\n        \"originalFileId\": 1,\n        \"fileUrl\": \"/converted/test\",\n        \"fileName\": \"test-converted.mp4\",\n        \"fileType\": \"audio/mpeg\",\n        \"fileSize\": 100000,\n        \"previewUrl\": \"preview/test-converted.mp4\",\n        \"duration\": 10000,\n        \"updatedAt\": \"2025-03-15T12:41:49.884Z\",\n        \"createdAt\": \"2025-03-15T12:41:49.884Z\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "파일 삭제",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"userId\": 1\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/common/upload/audio/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "common", "upload", "audio", "1"]
+        }
+      },
+      "response": [
+        {
+          "name": "삭제 완료",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"userId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/common/upload/audio/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "v1", "common", "upload", "audio", "1"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "404"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"194-LJU2Dr3gyCRhtMahBSznUGDUiGg\""
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Mar 2025 12:41:54 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"status\": \"ORIGINAL\",\n        \"previewUrl\": \"preview/1742042505123-sample_converted.wav\",\n        \"fileName\": \"1742042505123-sample_converted.wav\",\n        \"fileType\": \"audio/wave\",\n        \"fileSize\": 882044,\n        \"fileUrl\": \"uploads/1742042505123-sample_converted.wav\",\n        \"duration\": 10,\n        \"userId\": 1,\n        \"originalFileId\": null,\n        \"deletedAt\": \"2025-03-15T12:41:54.522Z\",\n        \"createdAt\": \"2025-03-15T12:41:45.000Z\",\n        \"updatedAt\": \"2025-03-15T12:41:54.522Z\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "큐 상태 조회",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/admin/queues/status",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["admin", "queues", "status"]
+        }
+      },
+      "response": [
+        {
+          "name": "큐 상태 조회 완료",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/admin/queues/status",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["admin", "queues", "status"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "1404"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"57c-W+DxSfCyCFy5IemRBNv6QF6B/P8\""
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Mar 2025 12:41:58 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"data\": {\n        \"queue\": \"INFERENCE_QUEUE\",\n        \"waitingJobs\": [],\n        \"activeJobs\": [],\n        \"delayedJobs\": [],\n        \"failedJobs\": [],\n        \"completedJobs\": [\n            {\n                \"name\": \"inferenceSts\",\n                \"data\": {\n                    \"transactionId\": \"c93272a1-4501-4a0e-8eef-a333cac32f0d\",\n                    \"fileId\": 1,\n                    \"voiceId\": 1,\n                    \"pitch\": 10\n                },\n                \"opts\": {\n                    \"attempts\": 0\n                },\n                \"id\": \"2\",\n                \"progress\": 0,\n                \"returnvalue\": {\n                    \"originalFileId\": 1,\n                    \"voiceId\": 1,\n                    \"pitch\": 10,\n                    \"soundQuality\": 24,\n                    \"fileSize\": 100000,\n                    \"duration\": 10000,\n                    \"originalPath\": \"/original/test\",\n                    \"convertedPath\": \"/converted/test\",\n                    \"fileType\": \"audio/mpeg\",\n                    \"fileName\": \"test-converted.mp4\",\n                    \"previewUrl\": \"preview/test-converted.mp4\"\n                },\n                \"stacktrace\": [],\n                \"delay\": 0,\n                \"priority\": 0,\n                \"attemptsStarted\": 1,\n                \"attemptsMade\": 1,\n                \"timestamp\": 1742042509864,\n                \"queueQualifiedName\": \"bull:INFERENCE_QUEUE\",\n                \"finishedOn\": 1742042509877,\n                \"processedOn\": 1742042509871\n            },\n            {\n                \"name\": \"inferenceSts\",\n                \"data\": {\n                    \"transactionId\": \"9f331dc8-d5a5-450d-94d0-cb420094150b\",\n                    \"fileId\": 1,\n                    \"voiceId\": 1,\n                    \"pitch\": 10\n                },\n                \"opts\": {\n                    \"attempts\": 0\n                },\n                \"id\": \"1\",\n                \"progress\": 0,\n                \"returnvalue\": {\n                    \"originalFileId\": 1,\n                    \"voiceId\": 1,\n                    \"pitch\": 10,\n                    \"soundQuality\": 24,\n                    \"fileSize\": 100000,\n                    \"duration\": 10000,\n                    \"originalPath\": \"/original/test\",\n                    \"convertedPath\": \"/converted/test\",\n                    \"fileType\": \"audio/mpeg\",\n                    \"fileName\": \"test-converted.mp4\",\n                    \"previewUrl\": \"preview/test-converted.mp4\"\n                },\n                \"stacktrace\": [],\n                \"delay\": 0,\n                \"priority\": 0,\n                \"attemptsStarted\": 1,\n                \"attemptsMade\": 1,\n                \"timestamp\": 1742042439780,\n                \"queueQualifiedName\": \"bull:INFERENCE_QUEUE\",\n                \"finishedOn\": 1742042439807,\n                \"processedOn\": 1742042439790\n            }\n        ]\n    }\n}"
+        }
+      ]
+    }
+  ]
+}

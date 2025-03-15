@@ -1,5 +1,6 @@
 import { QueryInterface } from 'sequelize';
 import sequelize from 'database/index';
+import { faker } from '@faker-js/faker';
 
 const runSeeders = async () => {
   try {
@@ -7,19 +8,19 @@ const runSeeders = async () => {
 
     await queryInterface.bulkInsert('users', [
       {
-        email: 'test1@gmail.com',
+        email: `${faker.internet.email()}@gmail.com`,
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null,
       },
       {
-        email: 'test2@gmail.com',
+        email: `${faker.internet.email()}@gmail.com`,
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null,
       },
       {
-        email: 'test3@gmail.com',
+        email: `${faker.internet.email()}@gmail.com`,
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null,
