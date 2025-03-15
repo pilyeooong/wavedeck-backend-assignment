@@ -17,6 +17,7 @@ export const requestAiInference = ({
   voiceId,
   pitch,
 }: {
+  transactionId: string;
   fileId: number;
   voiceId: number;
   pitch: number;

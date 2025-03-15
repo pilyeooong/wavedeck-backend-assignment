@@ -3,7 +3,7 @@ import queue, { redisConnection } from 'jobs/queue';
 import { QueueEvents } from 'bullmq';
 import { ResponseObject } from 'common/response';
 import File, { FILE_STATUS_CONVERTED } from 'models/file';
-import { BadRequestError, FILE_NOT_EXISTS_MESSAGE } from 'errors';
+import { BadRequestError, FILE_NOT_EXISTS_MESSAGE, OperationError } from 'errors';
 import JobHistory from 'models/jobHistory';
 import { AiInferenceResponseType } from 'external/aiInference';
 
@@ -26,11 +26,20 @@ export const requestSts = async (req: Request, res: Response, next: NextFunction
     });
 
     // 별도 워커 프로세스에서 실행
-    const job = await queue.add('inferenceSts', { fileId, voiceId, pitch });
+    const job = await queue.add('inferenceSts', {
+      transactionId: req.transactionId,
+      fileId,
+      voiceId,
+      pitch,
+    });
 
     // 사용자에게 처리 결과를 반환하기 위해 job 수행 결과를 기다린 후 결과 반환
     const queueEvents = new QueueEvents(queue.name, { connection: redisConnection });
-    const aiInferenceResult: AiInferenceResponseType = await job.waitUntilFinished(queueEvents);
+    const aiInferenceResult: AiInferenceResponseType = await job
+      .waitUntilFinished(queueEvents)
+      .catch((e) => {
+        throw new OperationError(e.message);
+      });
 
     // 변환된 파일정보도 디비에 저장
     const convertedFile = await File.createFile({
