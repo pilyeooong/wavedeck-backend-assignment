@@ -1,9 +1,15 @@
 import { Job } from 'bullmq';
+import { requestAiInference } from 'external/aiInference';
 
-const requestAiInferenceJob = (job: Job) => {
-  console.log(job);
+const requestAiInferenceJob = async (job: Job) => {
+  const {
+    data: { fileId, voiceId, pitch },
+  } = job;
 
-  return;
+  // AI 서버에 변환 요청
+  const response = requestAiInference({ fileId, voiceId, pitch });
+
+  return response;
 };
 
 export default requestAiInferenceJob;

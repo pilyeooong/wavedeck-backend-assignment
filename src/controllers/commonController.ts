@@ -25,7 +25,7 @@ export const createAudioFile = async (req: Request, res: Response, next: NextFun
     }
 
     if (userId) {
-      const user = await User.findOne(userId);
+      const user = await User.findById(userId);
       if (!user) {
         throw new NotFoundError(USER_NOT_EXISTS_MESSAGE);
       }
@@ -41,7 +41,7 @@ export const createAudioFile = async (req: Request, res: Response, next: NextFun
     }
 
     const file = await File.createFile({
-      userId,
+      userId: +userId,
       ...fileMetadata,
       status: FILE_STATUS_ORIGINAL,
       previewUrl: `preview/${fileMetadata.fileName}`,

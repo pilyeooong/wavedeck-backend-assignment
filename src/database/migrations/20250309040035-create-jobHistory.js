@@ -12,14 +12,18 @@ module.exports = {
       pitch: {
         type: Sequelize.FLOAT,
       },
-      soundQuality: {
-        type: Sequelize.FLOAT,
-      },
-      jobId: {
-        type: Sequelize.BIGINT,
-      },
-      status: {
+      transactionId: {
         type: Sequelize.STRING,
+        unique: true,
+      },
+      userId: {
+        type: Sequelize.BIGINT,
+        allowNull: false,
+        references: {
+          model: 'users',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
       },
       voiceId: {
         type: Sequelize.BIGINT,

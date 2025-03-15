@@ -1,9 +1,8 @@
 import express from 'express';
+import { requestSts } from 'controllers/inferenceController';
 
 const inferenceRouter = express.Router();
 
-inferenceRouter.get('/sts', (req, res, _) => {
-  res.status(200).send('sts');
-});
+inferenceRouter.post('/sts', requestSts);
 
 export default inferenceRouter;
