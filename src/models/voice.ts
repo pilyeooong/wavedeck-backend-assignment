@@ -31,6 +31,10 @@ class Voice extends Model<VoiceAttributes, VoiceCreationAttributes> {
   static async createVoice(voiceCreationAttributes: VoiceCreationAttributes) {
     return await this.create(voiceCreationAttributes);
   }
+
+  static async findById(id: number) {
+    return await this.findOne({ where: { id } });
+  }
 }
 
 export default Voice;

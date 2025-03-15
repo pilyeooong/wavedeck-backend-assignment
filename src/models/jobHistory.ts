@@ -57,6 +57,10 @@ class JobHistory extends Model<JobHistoriesAttributes, JobHistoryCreationAttribu
   static async createJobHistory(jobHistoryCreationAttributes: JobHistoryCreationAttributes) {
     return await this.create(jobHistoryCreationAttributes);
   }
+
+  static async findById(id: number) {
+    return await this.findOne({ where: { id } });
+  }
 }
 
 export default JobHistory;

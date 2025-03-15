@@ -29,8 +29,6 @@ describe('inferenceController', () => {
       .post('/api/v1/inference/sts')
       .send({ userId: user.id, fileId: file.id, voiceId: voice.id, pitch: 10 });
 
-    console.log(res.body);
-
     const {
       data: { id: fileId },
     } = res.body;
