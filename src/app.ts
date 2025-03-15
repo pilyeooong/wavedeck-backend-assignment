@@ -5,11 +5,14 @@ import errorHandler from 'errors/errorHandler';
 import morganMiddleware from 'middlewares/morganMiddleware';
 import transactionIdMiddleware from 'middlewares/transactionIdMiddleware';
 import bodyParser from 'body-parser';
+import { OperationError } from 'errors';
 
 const createApp = async () => {
   const app = express();
 
-  await sequelize.authenticate();
+  await sequelize.authenticate().catch((e) => {
+    throw new OperationError(e.message);
+  });
 
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
