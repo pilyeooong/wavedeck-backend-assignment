@@ -5,14 +5,16 @@ import errorHandler from 'errors/errorHandler';
 import morganMiddleware from 'middlewares/morganMiddleware';
 import transactionIdMiddleware from 'middlewares/transactionIdMiddleware';
 import bodyParser from 'body-parser';
-import { OperationError } from 'errors';
+import runSeeders from 'database/seeders/runSeeders';
 
 const createApp = async () => {
   const app = express();
 
-  await sequelize.authenticate().catch((e) => {
-    throw new OperationError(e.message);
-  });
+  await sequelize.authenticate();
+  if (process.env.NODE_ENV === 'development') {
+    await sequelize.sync({ force: true, alter: true });
+    await runSeeders();
+  }
 
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());

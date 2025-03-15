@@ -41,7 +41,7 @@ export const createAudioFile = async (req: Request, res: Response, next: NextFun
     }
 
     const file = await File.createFile({
-      userId: +userId,
+      userId: userId ? +userId : undefined,
       ...fileMetadata,
       status: FILE_STATUS_ORIGINAL,
       previewUrl: `preview/${fileMetadata.fileName}`,
