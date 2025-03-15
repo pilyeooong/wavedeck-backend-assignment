@@ -6,7 +6,7 @@ import userFactory from 'test/factory/userFactory';
 import fileFactory from 'test/factory/fileFactory';
 import voiceFactory from 'test/factory/voiceFactory';
 
-import worker from 'jobs/worker';
+import queue, { redisConnection } from 'jobs/queue';
 
 describe('inferenceController', () => {
   let app: Application;
@@ -17,7 +17,8 @@ describe('inferenceController', () => {
   });
 
   afterAll(async () => {
-    await worker.close();
+    await queue.close();
+    await redisConnection.quit();
   });
 
   it('request sts', async () => {

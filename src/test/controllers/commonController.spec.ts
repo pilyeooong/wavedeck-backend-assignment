@@ -5,6 +5,7 @@ import sequelize from 'database';
 import path from 'path';
 import userFactory from 'test/factory/userFactory';
 import fileFactory from 'test/factory/fileFactory';
+import queue, { redisConnection } from 'jobs/queue';
 
 describe('commonController', () => {
   let app: Application;
@@ -13,6 +14,11 @@ describe('commonController', () => {
     await sequelize.sync({ force: true, logging: false });
 
     app = await createApp();
+  });
+
+  afterAll(async () => {
+    await queue.close();
+    await redisConnection.quit();
   });
 
   it('create audio file', async () => {
