@@ -12,6 +12,7 @@ describe('inferenceController', () => {
   let app: Application;
 
   beforeAll(async () => {
+    jest.setTimeout(20000);
     await sequelize.sync({ force: true, logging: false });
     app = await createApp();
   });
@@ -22,7 +23,6 @@ describe('inferenceController', () => {
   });
 
   it('request sts', async () => {
-    jest.setTimeout(20000);
     const user = await userFactory();
     const file = await fileFactory();
     const voice = await voiceFactory();
