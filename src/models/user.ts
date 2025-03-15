@@ -31,7 +31,7 @@ class User extends Model<UserAttributes, UserCreationAttributes> {
 
   @Index
   @Column({ type: DataType.DATE, allowNull: true })
-  deletedAt: Date;
+  deletedAt?: Date;
 
   static async createUser(userData: UserCreationAttributes) {
     return await this.create(userData);

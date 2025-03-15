@@ -74,7 +74,7 @@ class File extends Model<FileAttributes, FileCreationAttributes> {
 
   @Index
   @Column
-  deletedAt: Date;
+  deletedAt?: Date;
 
   static async createFile(fileData: FileCreationAttributes) {
     return await this.create(fileData);

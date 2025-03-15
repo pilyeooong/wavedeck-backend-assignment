@@ -26,7 +26,7 @@ class Voice extends Model<VoiceAttributes, VoiceCreationAttributes> {
 
   @Index
   @Column
-  deletedAt: Date;
+  deletedAt?: Date;
 
   static async createVoice(voiceCreationAttributes: VoiceCreationAttributes) {
     return await this.create(voiceCreationAttributes);

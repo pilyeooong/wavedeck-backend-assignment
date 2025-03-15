@@ -52,7 +52,7 @@ class JobHistory extends Model<JobHistoriesAttributes, JobHistoryCreationAttribu
 
   @Index
   @Column
-  deletedAt: Date;
+  deletedAt?: Date;
 
   static async createJobHistory(jobHistoryCreationAttributes: JobHistoryCreationAttributes) {
     return await this.create(jobHistoryCreationAttributes);
