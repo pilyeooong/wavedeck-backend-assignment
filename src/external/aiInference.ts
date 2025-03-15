@@ -21,6 +21,8 @@ export const requestAiInference = ({
   voiceId: number;
   pitch: number;
 }): AiInferenceResponseType => {
+  // AI 서버로 sts 변환 요청을 합니다.
+  // 상세 구현은 진행하지 않고 모킹데이터를 반환합니다.
   const aiResponse = {
     originalFileId: fileId,
     voiceId,

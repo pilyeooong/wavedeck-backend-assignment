@@ -18,6 +18,7 @@ const sequelize = new Sequelize(database, username, password, {
   host,
   dialect,
   port,
+  logging: false,
   models: [modelsPath],
 });
 

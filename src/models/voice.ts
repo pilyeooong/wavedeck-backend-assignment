@@ -8,12 +8,16 @@ interface VoiceAttributes {
   deletedAt?: Date;
 }
 
+interface VoiceCreationAttributes {
+  name: string;
+}
+
 @Table({
   tableName: 'voices',
   timestamps: true,
   paranoid: true,
 })
-class Voice extends Model<VoiceAttributes> {
+class Voice extends Model<VoiceAttributes, VoiceCreationAttributes> {
   @Column({ type: DataType.BIGINT, allowNull: false, autoIncrement: true, primaryKey: true })
   id: number;
 
@@ -23,6 +27,10 @@ class Voice extends Model<VoiceAttributes> {
   @Index
   @Column
   deletedAt: Date;
+
+  static async createVoice(voiceCreationAttributes: VoiceCreationAttributes) {
+    return await this.create(voiceCreationAttributes);
+  }
 }
 
 export default Voice;
