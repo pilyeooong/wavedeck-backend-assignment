@@ -45,6 +45,15 @@ jobs:
       - name: install dependencies
         run: npm ci
 
+      - name: Wait for Redis to be ready
+        run: |
+          for i in {1..10}; do
+            nc -z redis 6379 && echo "Redis is up" && exit 0
+            echo "Waiting for Redis..."
+            sleep 3
+          done
+          echo "Redis did not start in time" && exit 1
+
       - name: run worker
         run: npm run worker &
 
