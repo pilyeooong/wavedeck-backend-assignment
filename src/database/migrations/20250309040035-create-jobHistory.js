@@ -15,6 +15,9 @@ module.exports = {
       soundQuality: {
         type: Sequelize.FLOAT,
       },
+      jobId: {
+        type: Sequelize.BIGINT,
+      },
       status: {
         type: Sequelize.STRING,
       },
