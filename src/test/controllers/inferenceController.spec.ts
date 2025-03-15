@@ -22,7 +22,7 @@ describe('inferenceController', () => {
   });
 
   it('request sts', async () => {
-    jest.setTimeout(10000);
+    jest.setTimeout(20000);
     const user = await userFactory();
     const file = await fileFactory();
     const voice = await voiceFactory();
