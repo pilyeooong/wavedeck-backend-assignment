@@ -45,9 +45,6 @@ jobs:
       - name: install dependencies
         run: npm ci
 
-      - name: run worker
-        run: npm run worker &
-
       - name: lint
         run: npm run lint
 

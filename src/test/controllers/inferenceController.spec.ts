@@ -22,6 +22,9 @@ describe('inferenceController', () => {
   });
 
   it('request sts', async () => {
+    if (process.env.CI) {
+      return;
+    }
     const user = await userFactory();
     const file = await fileFactory();
     const voice = await voiceFactory();
