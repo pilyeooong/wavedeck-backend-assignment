@@ -12,7 +12,7 @@ import {
   ForBiddenError,
 } from 'errors';
 import File, { FILE_STATUS_ORIGINAL } from 'models/file';
-import { extractFileMetadata, isAudioFile, isFileSizeOverLimit } from 'utils/fileUtil';
+import { extractFileMetadata, isAudioFile, isFileSizeOverLimit } from 'common/fileUtil';
 import { ResponseObject } from 'common/response';
 import sequelize from 'database';
 import User from 'models/user';
