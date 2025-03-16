@@ -10,6 +10,7 @@
     "test": "jest --runInBand --verbose --detectOpenHandles",
     "dev": "nodemon",
     "pm2:dev": "pm2-runtime start ecosystem.dev.config.js",
+    "pm2:start": "pm2-runtime start ecosystem.config.js",
     "start": "node dist/run.js",
     "migrate": "sequelize-cli db:migrate",
     "migrate:undo": "sequelize-cli db:migrate:undo",

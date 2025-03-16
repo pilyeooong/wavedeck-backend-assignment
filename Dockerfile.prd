@@ -3,10 +3,20 @@ FROM node:18.17.1
 WORKDIR /usr/wavedeck-backend-assignment
 COPY package*.json ./
 
+RUN npm install -g pm2 bun
+
 RUN npm install
 
 COPY . .
 
 RUN npm run build
 
-CMD ["node", "dist/run.js"]
+ENV DOCKERIZE_VERSION v0.9.2
+RUN apt-get update && \
+    apt-get install -y wget && \
+    wget -O - https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz | \
+    tar xzf - -C /usr/local/bin && \
+    apt-get autoremove -yqq --purge wget && \
+    rm -rf /var/lib/apt/lists/*
+
+CMD ["sh", "-c", "dockerize -wait tcp://mysql:3306 -timeout 40s && npm run migrate && npm run pm2:start"]
