@@ -19,4 +19,4 @@ RUN apt-get update && \
     apt-get autoremove -yqq --purge wget && \
     rm -rf /var/lib/apt/lists/*
 
-CMD ["sh", "-c", "dockerize -wait tcp://mysql:3306 -timeout 40s && npm run migrate && npm run pm2:start"]
+CMD ["sh", "-c", "dockerize -wait tcp://mysql:3306 -timeout 40s && npm run pm2:start"]
