@@ -7,7 +7,7 @@
     "prepare": "husky",
     "build": "tsc -p . && tsc-alias",
     "lint": "eslint . --config eslint.config.mjs",
-    "test": "jest --runInBand --verbose --detectOpenHandles",
+    "test": "jest --runInBand --verbose",
     "dev": "nodemon",
     "pm2:dev": "pm2-runtime start ecosystem.dev.config.js",
     "pm2:start": "pm2-runtime start ecosystem.config.js",
