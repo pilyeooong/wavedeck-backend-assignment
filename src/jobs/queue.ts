@@ -12,6 +12,15 @@ export const redisConnection = new Redis({
 
 export const INFERENCE_QUEUE = 'INFERENCE_QUEUE';
 
-const queue = new Queue(INFERENCE_QUEUE, { connection: redisConnection });
+const queue = new Queue(INFERENCE_QUEUE, {
+  connection: redisConnection,
+  defaultJobOptions: {
+    attempts: 3,
+    backoff: {
+      type: 'exponential',
+      delay: 1000,
+    },
+  },
+});
 
 export default queue;
