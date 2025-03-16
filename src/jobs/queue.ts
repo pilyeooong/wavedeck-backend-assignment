@@ -8,6 +8,7 @@ export const redisConnection = new Redis({
   host,
   port: +port,
   maxRetriesPerRequest: null,
+  enableOfflineQueue: false,
 });
 
 export const INFERENCE_QUEUE = 'INFERENCE_QUEUE';
