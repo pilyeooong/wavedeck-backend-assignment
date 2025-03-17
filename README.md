@@ -37,7 +37,7 @@
 
 - `docker compose up --build` 실행 시 데이터베이스 셋업, 마이그레이션 및 초기 시드데이터 추가까지 모두 실행됩니다. <br/> 필요 시 아래 커맨드들을 활용하는 것 또한 가능합니다.
   - npm run migrate (마이그레이션 실행)
-    - ![migration](db_migration.png)
+    - ![migration](assets/db_migration.png)
   - npm run seed (시드 데이터 추가)
   - 샘플 쿼리
     ```sql
@@ -45,7 +45,7 @@
       FROM information_schema.tables
       where TABLE_SCHEMA='wavedeck-development'
     ```
-    ![sample_query](sample_query.png)
+    ![sample_query](assets/sample_query.png)
 
 ### 테스트 실행
 
@@ -87,7 +87,7 @@
 
 ### 데이터 모델
 
-![ERD](erd.png)
+![ERD](assets/erd.png)
 
 ### 구현 과정
 
