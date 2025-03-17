@@ -23,8 +23,12 @@
 
 ### 실행 방법
 
-어플리케이션 서버 실행을 위해서는 로컬 머신에 `docker`, `docker-compose` 설치가 선행되어야합니다.<br/>
-프로젝트 실행 및 셋업에 필요한 환경변수는 디폴트로 설정되어 있습니다. <br/> 환경 변수 변경이 필요한 경우.env.sample을 참고해주시면 됩니다.
+- 어플리케이션 서버 실행을 위해서는 로컬 머신에 `docker`, `docker-compose` 설치가 선행되어야합니다.<br/>
+- 프로젝트 실행 및 셋업에 필요한 환경변수는 디폴트로 설정되어 있습니다. <br/>
+  환경 변수 변경이 필요한 경우.env.sample을 참고해주시면 됩니다. <br/>
+- 서버는 개발 환경 기준으로 실행되며, 프로덕션 환경 기준의 셋업도 별도로 분리해 추가해둔 상태입니다. <br/>
+  - dev: Dockerfile.dev, ecosystem.dev.config.js
+  - prd: Dockerfile.prd, ecosystem.config.js
 
 1. `docker compose up --build`
    - mysql, redis, nodejs 환경을 셋업합니다.
